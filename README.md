@@ -86,7 +86,7 @@ case 3:
     
     for(i=0;i<3;i++)
     {
-        min=*(p+i*3+j);
+        min=*(p+i*3+0);
         for(j=0;j<3;j++)
         {
             if(min>=*(p+i*3+j))
@@ -113,11 +113,12 @@ case 3:
     {
         if(*(r+0*3+0)==(*(r+1*3+0)) && *(r+0*3+1)==(*(r+1*3+1)))
         {
-            printf("Saddle point is at row %d and column %d which is %d",*(r+0*3+0),*(r+0*3+1),min);
+            printf("Saddle point is at row %d and column %d which is %d \n ",*(r+0*3+0),*(r+0*3+1),min);
         }
      
     }
     }
+    break;
 case 4:
 printf("No operation chosen \n");
 break;
@@ -126,5 +127,3 @@ default:
 printf("Invalid input \n");
 }
 }while(e!=4);
-
-}
