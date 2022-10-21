@@ -2,7 +2,7 @@
 
 int main()
 {
-    int i,j,r,c,count=0,k=0,p=0,ct=0,t=0;
+    int i,j,r,c,count=0,k=0,p=0,ct=0,t=0,q=0,x=0,y=0,u=0;
     printf("Enter number of rows : ");
     scanf("%d",&r);
     printf("Enter number of column : ");
@@ -118,10 +118,10 @@ printf(" 1st Matrix elements are \n");
         {
             if(a[i][j]!=0)
             {
-                d[p][0]=i;
-                d[p][1]=j;
-                d[p][2]=b[i][j];
-                p++;
+                d[q][0]=i;
+                d[q][1]=j;
+                d[q][2]=b[i][j];
+                q++;
             }
         }
     }
