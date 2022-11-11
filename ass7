@@ -23,7 +23,7 @@ void main()
 {   
     int ch,y;
     char a[20];
-    struct abc *head;
+    struct abc *head,*temp;
     head=(struct abc *)malloc(sizeof(struct abc));
     printf("Enter the name and prn of president \n");
     scanf(" %s",head->name);
@@ -34,6 +34,7 @@ void main()
     do
     {
         printf("Enter choice \n 1.INSERT MEMBER \n 2.DELETE PRESIDENT \n 3.DELETE SECRETARY \n 4.DELETE MEMBER \n 5.TOTAL MEMBERS \n 6.REVERSE \n 7.DISPLAY \n");
+        temp=head;
         scanf("%d",&ch);
         switch(ch)
         {
@@ -45,10 +46,16 @@ void main()
             break;
             case 4:deletem(head);
             break;
-            /*case 5:count(head);
+            case 5:count(head);
             break;
-            case 6:reverse(head);
-            break;*/
+            case 6:
+            printf("Reversed order is : \n");
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+            }
+            reverse(temp);
+            break;
             case 7:display(head);
             break;
             default:
@@ -121,11 +128,35 @@ void deletes(struct abc *head)
    free(temp);
 }
 
-/*void deletem(struct abc *head)
-{    
+void deletem(struct abc *head)
+{
     struct abc *temp;
-    head=temp;
     temp=head->next;
-    if(temp->next=NULL)
-    printf("It is secretary");
-}*/
+    head->next=temp->next;
+    temp->next->prev=head;
+    free(temp);
+}
+
+void count(struct abc *head)
+{
+    int i=0;
+    struct abc *temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+        i++;
+        temp=temp->next;
+    }
+    printf("Number of nodes are %d \n",i);
+}
+
+void reverse(struct abc *temp)
+{
+    
+    if(temp!=NULL)
+    {
+        printf("Name : %s \t prn : %d \n",temp->name,temp->prn);
+        temp=temp->prev;
+        reverse(temp);
+    }
+}
