@@ -12,7 +12,7 @@ void print();
 void main()
 {
     int ch,d,y;
-    printf("Circular array operations : \n ");
+    printf("Circular array operations : \n");
     do
     {
     printf("1.Insert \n2.Delete\n3.Print\n");
@@ -22,7 +22,7 @@ void main()
         switch(ch)
         {
             case 1:
-            printf("Enter data");
+            printf("Enter data ");
             scanf("%d",&d);
             enqueue(d);
             break;
@@ -35,7 +35,7 @@ void main()
             print();
             break;
         }
-        printf("Do you wish to continue(0/1)");
+        printf("Do you wish to continue(0/1) : ");
         scanf("%d",&y);
     }while(y==1);
 }
@@ -44,7 +44,7 @@ void enqueue(int d)
 {
     if((rear+1)%max==front || (rear==max-1 && front==0))
     {
-        printf("Queue is full");
+        printf("Queue is full\n");
         return;
     }
     else if(rear=-1)
@@ -63,7 +63,7 @@ void dequeue()
 {
     if(front==-1)
     {
-        printf("Stack is empty");
+        printf("Queue is empty\n");
         return;
     }
     else if(front==rear)
@@ -84,12 +84,15 @@ void print()
     {
         printf("%d",queue[i]);
     }
+    printf("\n");
     }
     else
     {
         for(int i=front;i<max;i++)
         {printf("%d",queue[i]);}
+        printf("\n");
         for(int i=0;i<=rear;i++)
         {printf("%d",queue[i]);}
+        printf("\n");
     }
 }
