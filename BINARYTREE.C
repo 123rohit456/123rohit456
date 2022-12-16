@@ -11,6 +11,8 @@ struct tree *insert(struct tree *,int);
 struct tree *create(int);
 struct tree *search(struct tree *,int);
 void inorder(struct tree *);
+struct tree *delete(struct tree *,int);
+int inorderS(struct tree *);
 
 struct tree *create(int d)
 {
@@ -61,6 +63,52 @@ struct tree *search(struct tree *root,int d)
     else
     {root->right=search(root->right,d);}
 }
+
+struct tree *delete(struct tree *root,int d)
+{
+    if(root==NULL)
+    {
+        return root;
+    }
+    if(d<root->data)
+    root->left=delete(root->left,d);
+    else if(d>root->data)
+    root->right=delete(root->right,d);
+    else
+    {
+        if(root->right==NULL)
+        {
+            struct tree *temp;
+            temp=root->left;
+            free(root);
+            return temp;
+        }
+        else if(root->left==NULL)
+        {
+            struct tree *temp;
+            temp=root->right;
+            free(root);
+            return temp;
+        }
+        else
+        {
+            struct tree *temp;
+            temp=root->right;
+            root->data=inorderS(temp);
+            root->right=delete(root->right,root->data);
+        }
+    }
+    return root;
+}
+
+int inorderS(struct tree *temp)
+{
+    while(temp && temp->left!=NULL)
+    temp=temp->left;
+    return temp->data;
+}
+
+
 void main()
 {
     int ch,d,y;
@@ -68,7 +116,7 @@ void main()
     printf("---------CREATION OF BINARY TREE-------------\n");
     do
     {
-      printf("Enter choice : \n1.Insert \n.2.Search \n3.Inorder traversal \n");
+      printf("Enter choice : \n1.Insert \n2.Search \n3.Inorder traversal\n4.Delete\n");
       scanf("%d",&ch);
       switch(ch)
       {
@@ -88,9 +136,14 @@ void main()
           printf("\nInorder tree traversal : ");
           inorder(root);
           break;
+          
+          case 4:
+          printf("\nEnter the element to be deleted : ");
+          scanf("%d",&d);
+          delete(root,d);
+          break;
       }
       printf("\nDo you wish to continue(0/1)\n");
       scanf("%d",&y);
     }while(y==1);
-
 }
