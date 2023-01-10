@@ -1,4 +1,4 @@
-#include <stdio.h>
+##include <stdio.h>
 #include <stdlib.h>
 
 struct tree
@@ -65,49 +65,54 @@ struct tree *search(struct tree *root,int d)
     return root;
 }
 
-struct tree *delete(struct tree *root,int d)
-{
-    if(root==NULL)
+ int inorderS(struct tree *temp)
+ {
+    while(temp && temp->left!=NULL)
     {
+        return temp->data;
+    }
+ } 
+
+ struct tree *delete(struct tree *root,int d)
+ {
+    if(root==NULL)
+    { 
         return root;
     }
     if(d<root->data)
-    root->left=delete(root->left,d);
+    {
+        root->left=delete(root->left,d);
+    }
     else if(d>root->data)
-    root->right=delete(root->right,d);
+    {
+        root->right=delete(root->right,d);
+    }
     else
     {
-        if(root->right==NULL)
-        {
-            struct tree *temp;
-            temp=root->left;
-            free(temp);
-            return root;
-        }
-        else if(root->left==NULL)
+        if(root->left==NULL) //FOR 1 RIGHT CHILD
         {
             struct tree *temp;
             temp=root->right;
-            free(temp);
-            return root;
+            free(root);
+            return temp;
         }
-        else
+        else if(root->right==NULL) //FOR 1 LEFT CHILD
+        {
+             struct tree *temp;
+            temp=root->left;
+            free(root);
+            return temp;
+        }
+        else //FOR 2 CHILDS
         {
             struct tree *temp;
             temp=root->right;
             root->data=inorderS(temp);
-            root->right=delete(root->right,root->data);
+            root->right=delete(temp,root->data);
         }
     }
     return root;
-}
-
-int inorderS(struct tree *temp)
-{
-    while(temp && temp->left!=NULL)
-    temp=temp->left;
-    return temp->data;
-}
+ }
 
 
 void main()
