@@ -7,76 +7,98 @@ void transpose();
 
 void addition()
 {
-    int i,j,n,*p,*q,*r;
-    printf("Enter the size of matrix : ");
-    scanf("%d",&n);
-    int a[n][n],b[n][n],c[n][n];
-    p=&a[0][0];
-    q=&b[0][0];
-    r=&c[0][0];
+    int a,b,c,d;
+    printf("Enter size of matrix 1 : ");
+    scanf("%d %d",&a,&b);
+    printf("Enter size of matrix 2 : ");
+    scanf("%d %d",&c,&d);
     
-    printf("Enter the elements of first array\n");
-    for(i=0;i<n;i++)
-    for(j=0;j<n;j++)
-    scanf("%d",(p+((i*n)+j)));
-    
-    printf("Enter the elements of second array\n");
-    for(i=0;i<n;i++)
-    for(j=0;j<n;j++)
-    scanf("%d",(q+((i*n)+j)));
-    
-    for(i=0;i<n;i++)
-    for(j=0;j<n;j++)
-    *(r+((i*n)+j))=*(p+((i*n)+j)) + *(q+((i*n)+j));
-    
-    printf("The addition of 2 matrices is : \n");
-    for(i=0;i<n;i++)
+    if(a==c && b==d)
     {
-        for(j=0;j<n;j++)
-        {
-            printf("%d",*(r+((i*n)+j)));
-            printf("\t");
-        }
-        printf("\n");
+        int x[a][b],y[c][d],z[a][b],*p,*q,*r,i,j;
+        p=&x[0][0];
+        q=&y[0][0];
+        r=&z[0][0];
+        
+        printf("Enter elements of 1st matrix\n");
+        for(i=0;i<a;i++)
+        for(j=0;j<b;j++)
+        scanf("%d",(p+((i*b)+j)));
+    
+        printf("Enter elements of 2nd matrix\n");
+        for(i=0;i<c;i++)
+        for(j=0;j<d;j++)
+        scanf("%d",(q+((i*d)+j)));
+        
+        for(i=0;i<c;i++)
+        for(j=0;j<d;j++)
+        *(r+((i*d)+j))=*(p+((i*b)+j))+*(q+((i*d)+j));
+       
+    printf("Addition of 2 matrices is : \n");
+    for(i=0;i<a;i++)
+    {
+    for(j=0;j<d;j++)
+    {
+    printf("%d",*(r+(i*d)+j));
+    printf("\t");
     }
+    printf("\n");
+    }
+        
+    }
+    else{
+        printf("Addition is not possible\n");
+    }
+    
 }
 
 void multiplication()
 {
-
-int a[3][3],b[3][3],*p,*q,*r,d[3][3],i,j,k;
-p=&a[0][0];
-q=&b[0][0];
-r=&d[0][0];
-
-printf("Enter the elements of first array \n");
-for(i=0;i<3;i++)
-for(j=0;j<3;j++)
-scanf("%d",(p+((i*3)+j)));
-    
-printf("Enter the elements of second array \n");
-for(i=0;i<3;i++)
-for(j=0;j<3;j++)
-scanf("%d",(q+((i*3)+j)));
-
-for(i=0;i<3;i++)
-for(j=0;j<3;j++)
-*(r+((i*3)+j))=0;
-
-for(i=0;i<3;i++)
-for(j=0;j<3;j++)
-for(k=0;k<3;k++)
-*(r+((i*3)+j))=*(r+((i*3)+j))+(*(p+((i*3)+k)))*(*(q+((k*3)+j)));
-
- printf("The multiplication of 2 matrices is : \n ");
- for(i=0;i<3;i++)
+int a,b,c,d;
+printf("Enter size of matrix 1 : ");
+scanf("%d %d",&a,&b);
+printf("Enter size of matrix 2 : ");
+scanf("%d %d",&c,&d);
+if(b!=c)
 {
-    for(j=0;j<3;j++)
+    printf("Multiplication is not possible\n");
+}
+else
+{
+    int x[a][b],y[c][d],z[a][d],*p,*q,*r,i,j,k;
+    p=&x[0][0];
+    q=&y[0][0];
+    r=&z[0][0];
+    
+    printf("Enter elements of 1st matrix\n");
+    for(i=0;i<a;i++)
+    for(j=0;j<b;j++)
+    scanf("%d",(p+((i*b)+j)));
+    
+    printf("Enter elements of 2nd matrix\n");
+    for(i=0;i<c;i++)
+    for(j=0;j<d;j++)
+    scanf("%d",(q+((i*d)+j)));
+    
+    for(i=0;i<a;i++)
+    for(j=0;j<d;j++)
+    *(r+((i*d)+j))=0;
+    
+    for(i=0;i<a;i++)
+    for(j=0;j<d;j++)
+    for(k=0;k<b;k++)
+    *(r+((i*d)+j))+= *(p+((i*b)+k))**(q+((k*d)+j));
+    
+    printf("Multiplication of 2 matrices is : \n");
+    for(i=0;i<a;i++)
     {
-        printf("%d ",d[i][j]);
-        printf("\t");
+    for(j=0;j<d;j++)
+    {
+    printf("%d",*(r+(i*d)+j));
+    printf("\t");
     }
-   printf("\n");
+    printf("\n");
+    }
 }
 }
 
@@ -128,27 +150,39 @@ void saddle()
 
 void transpose()
 {
-    int a[3][3],b[3][3],*p,*q,i,j;
-    p=&a[0][0];
-    q=&b[0][0];
-    
-    for(i=0;i<3;i++)
-    for(j=0;j<3;j++)
-    scanf("%d",(p+((i*3)+j)));
-    
-    for(i=0;i<3;i++)
-    for(j=0;j<3;j++)
-    *(q+((j*3)+i))=*(p+((i*3)+j));
-    
-    printf("The Transpose of  matrix is : \n ");
- for(i=0;i<3;i++)
+int a,b;
+printf("Enter the size of matrix ");
+scanf("%d %d",&a,&b);
+
+if(a==b)
 {
-    for(j=0;j<3;j++)
+    int x[a][a],y[a][a],*p,*q,i,j;
+    p=&x[0][0];
+    q=&y[0][0];
+    
+    printf("Enter matrix elements : ");
+    for(i=0;i<a;i++)
+    for(j=0;j<a;j++)
+    scanf("%d",(p+((i*a)+j)));
+    
+    for(i=0;i<a;i++)
+    for(j=0;j<a;j++)
+    *(q+((j*a)+i))=*(p+((i*a)+j));
+    
+    printf("Transpose of matrix is \n");
+    for(i=0;i<a;i++)
     {
-        printf("%d ",*(q+((i*3)+j)));
+    for(j=0;j<a;j++)
+    {
+        printf("%d",*(q+((i*a)+j)));
         printf("\t");
     }
-   printf("\n");
+    printf("\n");
+    }
+}
+else
+{
+    printf("Transpose of matrix is not possible\n");
 }
     
 }
