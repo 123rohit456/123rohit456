@@ -1,75 +1,55 @@
-#include<stdio.h>
+#include <stdio.h>
 
-#include<conio.h>
-
-void main()
-
+int main()
 {
-int a,b,u,v,n,i,j,ne=1;
-
-printf("\nEnter the number of nodes:");
-
-scanf("%d",&n);
-int visited[10]={0},min,mincost=0,cost[10][10];
-
-printf("\nEnter the adjacency matrix:\n");
-
-for(i=1;i<=n;i++)
-
-for(j=1;j<=n;j++)
-
-{
-
-scanf("%d",&cost[i][j]);
-
-if(cost[i][j]==0)
-
-cost[i][j]=999;
-
-}
-
-visited[1]=1;
-
-printf("\n");
-
-while(ne < n)
-
-{
-
-for(i=1,min=999;i<=n;i++)
-
-for(j=1;j<=n;j++)
-
-if(cost[i][j]< min)
-
-if(visited[i]!=0)
-
-{
-
-min=cost[i][j];
-
-a=u=i;
-
-b=v=j;
-
-}
-
-if(visited[u]==0 || visited[v]==0)
-
-{
-
-printf("\n Edge %d:(%d %d) cost:%d",ne++,a,b,min);
-
-mincost+=min;
-
-visited[b]=1;
-
-}
-
-cost[a][b]=cost[b][a]=999;
-
-}
-
-printf("\n Minimun cost=%d",mincost);
-
+    int e=1,v,min=0,total,c,d;
+    printf("Enter the number of vertices : ");
+    scanf("%d",&v);
+    
+    int a[v][v];
+    printf("Enter the cost matrix : \n");
+    for(int i=0;i<v;i++)
+    {
+        for(int j=0;j<v;j++)
+        {
+            scanf("%d",&a[i][j]);
+            if(a[i][j]==0)
+            a[i][j]=999;
+        }
+    }
+    
+    int visited[v];
+    for(int i=0;i<v;i++)
+    {
+        visited[i]=0;
+    }
+    visited[0]=1;
+    
+    while(e<v)
+    {
+        for(int i=0,min=999;i<v;i++)
+        {
+            if(visited[i])
+            {
+                for(int j=0;j<v;j++)
+                {
+                    if(min>a[i][j])
+                    {
+                        min=a[i][j];
+                        c=i;
+                        d=j;
+                    }
+                }
+            }
+            if(visited[d]==0)
+            {
+                total+=min;
+                printf("Edge : (%d,%d) Cost : %d\n",c,d,min);
+                visited[d]=1;
+                a[c][d]=a[d][c]=999;
+            }
+        }
+        e++;
+    }
+    printf("Total cost of the spanning tree is : %d",total);
 }
