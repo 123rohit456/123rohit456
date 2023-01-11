@@ -42,54 +42,43 @@ void addition()
 
 void multiplication()
 {
-    int i,j,k,a,b,m,n,*p,*q;
-    printf("Enter the size of 1st matrix : ");
-    scanf("%d %d",&a,&b);
-    int c[a][b];
-    p=&c[0][0];
-    printf("Enter the size of 2nd matrix : ");
-    scanf("%d %d",&m,&n);
-    int d[m][n];
-    q=&d[0][0];
+
+int a[3][3],b[3][3],*p,*q,*r,d[3][3],i,j,k;
+p=&a[0][0];
+q=&b[0][0];
+r=&d[0][0];
+
+printf("Enter the elements of first array \n");
+for(i=0;i<3;i++)
+for(j=0;j<3;j++)
+scanf("%d",(p+((i*3)+j)));
     
-    if(b!=m)
+printf("Enter the elements of second array \n");
+for(i=0;i<3;i++)
+for(j=0;j<3;j++)
+scanf("%d",(q+((i*3)+j)));
+
+for(i=0;i<3;i++)
+for(j=0;j<3;j++)
+*(r+((i*3)+j))=0;
+
+for(i=0;i<3;i++)
+for(j=0;j<3;j++)
+for(k=0;k<3;k++)
+*(r+((i*3)+j))=*(r+((i*3)+j))+(*(p+((i*3)+k)))*(*(q+((k*3)+j)));
+
+ printf("The multiplication of 2 matrices is : \n ");
+ for(i=0;i<3;i++)
+{
+    for(j=0;j<3;j++)
     {
-        printf("Multiplication is not possible\n");
+        printf("%d ",d[i][j]);
+        printf("\t");
     }
-    else
-    {
-    printf("Enter the elements of first array\n");
-    for(i=0;i<a;i++)
-    for(j=0;j<b;j++)
-    scanf("%d",(p+((i*a)+j)));
-    
-    printf("Enter the elements of second array\n");
-    for(i=0;i<m;i++)
-    for(j=0;j<n;j++)
-    scanf("%d",(q+((i*m)+j)));
-    
-    int e[a][n];
-    for(i=0;i<a;i++)
-    for(j=0;j<n;j++)
-    e[i][j]=0;
-    
-    for(i=0;i<a;i++)
-    for(j=0;j<n;i++)
-    for(k=0;k<n;k++)
-    e[i][j]+=(*(p+((i*a)+k)))*(*(q+((k*n)+j)));
-    
-    printf("The multiplication of 2 matrices is : \n");
-    for(i=0;i<a;i++)
-    {
-        for(j=0;j<n;j++)
-        {
-            printf("%d",d[i][j]);
-            printf("\t");
-        }
-        printf("\n");
-    }
-    }
+   printf("\n");
 }
+}
+
 
 void saddle()
 {
@@ -147,10 +136,13 @@ int main()
        {
            case 1:
            addition();
+           break;
            case 2:
            multiplication();
+           break;
            case 3:
            saddle();
+           break;
        }printf("Do you wish to continue(0/1) ");
        scanf("%d",&y);
     }while(y==1);
