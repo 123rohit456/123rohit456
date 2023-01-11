@@ -3,6 +3,7 @@
 void addition();
 void multiplication();
 void saddle();
+void transpose();
 
 void addition()
 {
@@ -125,12 +126,38 @@ void saddle()
     }
 }
 
+void transpose()
+{
+    int a[3][3],b[3][3],*p,*q,i,j;
+    p=&a[0][0];
+    q=&b[0][0];
+    
+    for(i=0;i<3;i++)
+    for(j=0;j<3;j++)
+    scanf("%d",(p+((i*3)+j)));
+    
+    for(i=0;i<3;i++)
+    for(j=0;j<3;j++)
+    *(q+((j*3)+i))=*(p+((i*3)+j));
+    
+    printf("The Transpose of  matrix is : \n ");
+ for(i=0;i<3;i++)
+{
+    for(j=0;j<3;j++)
+    {
+        printf("%d ",*(q+((i*3)+j)));
+        printf("\t");
+    }
+   printf("\n");
+}
+    
+}
 
 int main()
 {   int ch,y;
     do
     {
-       printf("Matrix operations : 1.Addition\n2.Multiplication\n3.Saddle point\nEnter choice : ");
+       printf("Matrix operations : 1.Addition\n2.Multiplication\n3.Saddle point\n4.Transpose\nEnter choice : ");
        scanf("%d",&ch);
        switch(ch)
        {
@@ -142,6 +169,9 @@ int main()
            break;
            case 3:
            saddle();
+           break;
+           case 4:
+           transpose();
            break;
        }printf("Do you wish to continue(0/1) ");
        scanf("%d",&y);
