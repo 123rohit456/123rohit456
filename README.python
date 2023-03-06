@@ -1,0 +1,10 @@
+print("------------Salary calculator-------------")
+basic=int(input("Enter basic salary"))
+da = 0.25*basic
+hra = 0.15*basic
+pf = 0.12*(basic+da)
+ta = 0.075*basic
+net_pay=basic+da+hra+ta
+gross_pay=net_pay-pf
+
+print("Da is ",da,"\n Hra is ",hra,"\n pf is ",pf,"\n ta is ",ta,"\n net pay is ",net_pay,"\n gross pay is ",gross_pay)
